@@ -1,5 +1,48 @@
+## Project details
+**problem:** 
+Creating new and unique (good quality) video content with 
+a high level of control is difficult with today's tools.
+
+**potential solution:**
+How might we leverage generative models, i.e. GANs, to learn patterns from
+custom curated datasets (photos in this case) to generate new and
+unique videos?
+
+**problems in the space:**
+- limited data that is usable (web scraping is not viable)
+- limited resources, training can be expensive (issues w/Colab)
+- using too little data without transfer learning causes training
+  to diverge (best to use a few thousand images, ~1-5k)
+
+**process:**
+1) Slice images into smaller chunks, i.e. 1024x1024, to increase training data
+   (this also helps create more of an abstract vibe). Decide your size at
+   the onset of the project based on your needs (high quality video or 
+   faster training with smaller images). You can do some math here to get
+   either 1k images to use with transfer learning, or 5-25k images if training
+   from scratch.
+
+2) With less than 1k images, it is best to use transfer learning. Find a 
+   pretrained model that matches the resolution you choose above. I went
+   with a wiki-art model since I wanted more of an abstract art feel and it
+   best matched my images to begin with in structure.
+
+3) Start training with keeping an eye on the metrics and generated fakes.
+   You will need to review the recs from the nvidia team on what the best
+   settings (base config) are based on your dataset, gpu, how long you want
+   to train for, and how often you'd like to see the output/progress. GPU 
+   number and memory matters a lot here, so try to fine tune it before 
+   letting the training run for too long.
+
+4) Once you are happy with the quality of generated images, you can start
+   generating and experimenting with video! If you are still unhappy with
+   the results, continue training if your model hasn't converged or 
+   add more images to your dataset to get more diversity, which will most
+   likely lead to a better model and better video.
+
+
 ## Need Help?
-* If you’re new to StyleGAN2-ADA and looking to get started, please check out [this video series](https://www.youtube.com/playlist?list=PLWuCzxqIpJs8ViuBIUtAk-dsAtdrApYoy) from a course Lia Coleman and I taught in October 2020.
+* If you’re new to StyleGAN2-ADA and looking to get started, please check out [this video series](https://www.youtube.com/playlist?list=PLWuCzxqIpJs8ViuBIUtAk-dsAtdrApYoy) from a course Lia Coleman and Derrick Schultz taught in October 2020.
 * Interested in contributing? Please submit PRs or discuss changes in the [Artificial Images Slack](https://join.slack.com/t/ml-images/shared_invite/zt-9mxoe7va-eBZ9xzAWpx8VRL~Km_PzUQ) channel
 
 ## Edits made to this repo
